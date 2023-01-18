@@ -1,0 +1,51 @@
+.resources main {
+	h2.all-lessons {
+		font-size: 3em;
+		text-align: center;
+		margin-top: 0;
+	}
+
+	section {
+		margin-bottom: 20px;
+		margin-top: 20px;
+		box-sizing: border-box;
+		padding-bottom: 20px;
+		border-bottom: solid 1px $yellow;
+
+		&:last-of-type {
+			border: 0;
+			margin-bottom: 0;
+		}
+
+		h2 {
+			font-size: 2em;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		.left p {
+			margin-bottom: 10px;
+		}
+
+		.right {
+			margin-top: 20px;
+		}
+
+		@media (min-width: 768px) {
+			.left {
+				width: 50%;
+				float: left;
+				padding-right: 3%;
+			}
+
+			.right {
+				margin-top: 0;
+				width: 50%;
+				float: left;
+			}
+		}
+
+	}
+}

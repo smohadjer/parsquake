@@ -1,0 +1,55 @@
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="resources/js/lib/ytplayer.js"></script>
+<script>
+	let youTubeIframeAPIIsReady = (typeof YT.Player === 'undefined') ? false : true;
+	let youtubePlaylistApiIsReady = false;
+
+	gapi.load('client', function() {
+		gapi.client.init({
+			apiKey: 'AIzaSyB8BLH_MnwPpOtOnyGcDWw0FM-TRie8j_g',
+			discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+		}).then(function() {
+			youtubePlaylistApiIsReady = true;
+
+			if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+				initYTPlayer();
+			}
+		});
+	});
+
+	function onYouTubeIframeAPIReady() {
+		youTubeIframeAPIIsReady = true;
+		if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+			initYTPlayer();
+		}
+	}
+
+	function initYTPlayer() {
+		function replaceURLWithHTMLLinks(text) {
+			var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+			return text.replace(exp,"<a href='$1'>See lesson plan</a>");
+		}
+
+		function callback(elm) {
+			let descriptionElm = elm.querySelector('.ytplayer-description');
+			if (descriptionElm) {
+				let desText = descriptionElm.innerHTML;
+				desText = replaceURLWithHTMLLinks(desText);
+				descriptionElm.innerHTML = desText;
+			}
+		}
+
+		document.querySelectorAll('.ytplayer').forEach(function(elm) {
+			const ytplayer = new YTPlayer({
+				element: elm,
+				cb_init: function() {
+					callback(elm);
+				},
+				cb_playlist_click: function(item) {
+					callback(elm);
+				}
+			});
+		});
+	}
+</script>
