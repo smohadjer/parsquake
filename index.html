@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+    <head>
+    	<meta charset="utf-8">
+    	<title>ParsQuake</title>
+    	<meta name="description" content="Earthquake Education in the Global Persian Community">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    </head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="resources/css/helper.css">
+    <link rel="stylesheet" href="resources/css/styles.css">
+	</head>
+	<body>
+	<header>
+		<p>ParsQuake</p>
+		<h1>Earthquake Education in the Global Persian Community</h1>
+		<nav>
+			<ul>
+				<li class="selected"><a href="/index.html">Home</a></li>
+				<li ><a href="/about.html">About</a></li>
+				<li ><a href="/resources.html">Resources</a></li>
+				<li ><a href="/gallery.html">Gallery</a></li>
+				<li ><a href="/news.html">News</a></li>
+				<li ><a href="/help.html">Help Us</a></li>
+				<li ><a href="/links.html">Links</a></li>
+			</ul>
+		</nav>
+	</header>
+    <div class="index">
+        <main>
+            <main>
+            	<section class="clearfix">
+            		<div class="ytplayer" data-playlist-id="PLuuX-B3xC1FrRVvSfyLVYk1K0ihURmsYy">
+            			<div class="left">
+            				<div class="ytplayer-wrapper">
+            					<div class="ytplayer-video"></div>
+            				</div>
+            				<ul class="ytplayer-list"></ul>
+            			</div>
+            			<div class="right">
+            				<h2 class="ytplayer-title"></h2>
+            				<p class="ytplayer-description"></p>
+            			</div>
+            		</div>
+            	</section>
+            
+            	<section class="clearfix">
+            		<div class="ytplayer" data-video-id="GU_-4vAAslg">
+            			<div class="left">
+            				<div class="ytplayer-wrapper">
+            					<div class="ytplayer-video"></div>
+            				</div>
+            			</div>
+            			<div class="right">
+            				<h2 class="ytplayer-title"></h2>
+            				<p class="ytplayer-description"></p>
+            			</div>
+            		</div>
+            	</section>
+            
+            	<section class="clearfix">
+            		<div class="left">
+            			<figure >
+            				<div class="videoWrapper">
+            					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/q1rFoN-DnS8?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            				</div>
+            			</figure>
+            		</div>
+            		<div class="right">
+            			<h2>How to disarm earthquakes</h2>
+            			<p>Solmaz Mohadjer explains why it's vitally important to understand earthquakes, even if you live in an area without them.</p>
+            		</div>
+            	</section>
+            
+            	<section class="clearfix">
+            		<article class="teaser">
+            			<h2>Locate faults near you</h2>
+            			<p><a href="https://esdynamics.geo.uni-tuebingen.de/faults">Central Asia Fault Database</a></p>
+            		</article>
+            		<article class="teaser">
+            			<h2>Read a journal article on earthquake education in Tajikistan</h2>
+            			<p><a href="http://www.nagt.org/files/nagt/jge/abstracts/earthquake_emergency_education.pdf">Journal of Geoscience Education</a></p>
+            		</article>
+            		<article class="teaser">
+            			<h2>ParsQuake is in the New York Times</h2>
+            			<p><a href="https://dotearth.blogs.nytimes.com/2015/05/01/amid-katmandu-earthquake-wreckage-hints-of-a-shift-to-safer-construction/?_r=0">Dot Earth (May 4, 2015)</a></p>
+            		</article>
+            	</section>
+            </main>
+        </main>
+    </div>
+    <footer>
+      <p>For questions, contact <a href="mailto:parsquake@gmail.com">ParsQuake</a></p>
+      <ul>
+        <li><a href="https://twitter.com/pars_quake" class="twitter btn">Follow us on Twitter</a></li>
+        <li><a href="https://www.youtube.com/channel/UCoNs-jxUx1wUQfVhKI0ZZCQ" class="youtube btn">YouTube Channel</a></li>
+      </ul>
+    </footer>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="resources/js/lib/ytplayer.js"></script>
+    <script>
+    	let youTubeIframeAPIIsReady = (typeof YT.Player === 'undefined') ? false : true;
+    	let youtubePlaylistApiIsReady = false;
+    
+    	gapi.load('client', function() {
+    		gapi.client.init({
+    			apiKey: 'AIzaSyB8BLH_MnwPpOtOnyGcDWw0FM-TRie8j_g',
+    			discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+    		}).then(function() {
+    			youtubePlaylistApiIsReady = true;
+    
+    			if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+    				initYTPlayer();
+    			}
+    		});
+    	});
+    
+    	function onYouTubeIframeAPIReady() {
+    		youTubeIframeAPIIsReady = true;
+    		if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+    			initYTPlayer();
+    		}
+    	}
+    
+    	function initYTPlayer() {
+    		function replaceURLWithHTMLLinks(text) {
+    			var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+    			return text.replace(exp,"<a href='$1'>See lesson plan</a>");
+    		}
+    
+    		function callback(elm) {
+    			let descriptionElm = elm.querySelector('.ytplayer-description');
+    			if (descriptionElm) {
+    				let desText = descriptionElm.innerHTML;
+    				desText = replaceURLWithHTMLLinks(desText);
+    				descriptionElm.innerHTML = desText;
+    			}
+    		}
+    
+    		document.querySelectorAll('.ytplayer').forEach(function(elm) {
+    			const ytplayer = new YTPlayer({
+    				element: elm,
+    				cb_init: function() {
+    					callback(elm);
+    				},
+    				cb_playlist_click: function(item) {
+    					callback(elm);
+    				}
+    			});
+    		});
+    	}
+    </script>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+    <head>
+    	<meta charset="utf-8">
+    	<title>ParsQuake</title>
+    	<meta name="description" content="Earthquake Education in the Global Persian Community">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    </head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="resources/css/helper.css">
+    <link rel="stylesheet" href="resources/css/styles.css">
+	</head>
+	<body>
+	<header>
+		<p>ParsQuake</p>
+		<h1>Earthquake Education in the Global Persian Community</h1>
+		<nav>
+			<ul>
+				<li ><a href="/index.html">Home</a></li>
+				<li ><a href="/about.html">About</a></li>
+				<li ><a href="/resources.html">Resources</a></li>
+				<li ><a href="/gallery.html">Gallery</a></li>
+				<li ><a href="/news.html">News</a></li>
+				<li class="selected"><a href="/help.html">Help Us</a></li>
+				<li ><a href="/links.html">Links</a></li>
+			</ul>
+		</nav>
+	</header>
+    <div class="help">
+        <main>
+            <article class="clearfix">
+            	<h1>Want to help us out?</h1>
+            	<p>We are dedicating our efforts to developing, implementing, improving, and distributing earthquake education packages all around Central Asia, particularly Tajikistan, Afghanistan, and Iran. First and foremost, we seek collaborators within Central Asia that can help us implement earthquake curricula with young people. This might include teachers, administrators, or parents that would like to receive earthquake education curricula training. Second, we seek collaborators that can help us to locate, acquire, and distribute raw materials used throughout the curricula. Finally, we seek international geohazards specialists and scientists operating in Central Asia who are willing to share their knowledge with young people in the course of their field studies in the region.</p>
+            </article>
+        </main>
+    </div>
+    <footer>
+      <p>For questions, contact <a href="mailto:parsquake@gmail.com">ParsQuake</a></p>
+      <ul>
+        <li><a href="https://twitter.com/pars_quake" class="twitter btn">Follow us on Twitter</a></li>
+        <li><a href="https://www.youtube.com/channel/UCoNs-jxUx1wUQfVhKI0ZZCQ" class="youtube btn">YouTube Channel</a></li>
+      </ul>
+    </footer>
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="resources/js/lib/ytplayer.js"></script>
+    <script>
+    	let youTubeIframeAPIIsReady = (typeof YT.Player === 'undefined') ? false : true;
+    	let youtubePlaylistApiIsReady = false;
+    
+    	gapi.load('client', function() {
+    		gapi.client.init({
+    			apiKey: 'AIzaSyB8BLH_MnwPpOtOnyGcDWw0FM-TRie8j_g',
+    			discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+    		}).then(function() {
+    			youtubePlaylistApiIsReady = true;
+    
+    			if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+    				initYTPlayer();
+    			}
+    		});
+    	});
+    
+    	function onYouTubeIframeAPIReady() {
+    		youTubeIframeAPIIsReady = true;
+    		if (youTubeIframeAPIIsReady && youtubePlaylistApiIsReady) {
+    			initYTPlayer();
+    		}
+    	}
+    
+    	function initYTPlayer() {
+    		function replaceURLWithHTMLLinks(text) {
+    			var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
+    			return text.replace(exp,"<a href='$1'>See lesson plan</a>");
+    		}
+    
+    		function callback(elm) {
+    			let descriptionElm = elm.querySelector('.ytplayer-description');
+    			if (descriptionElm) {
+    				let desText = descriptionElm.innerHTML;
+    				desText = replaceURLWithHTMLLinks(desText);
+    				descriptionElm.innerHTML = desText;
+    			}
+    		}
+    
+    		document.querySelectorAll('.ytplayer').forEach(function(elm) {
+    			const ytplayer = new YTPlayer({
+    				element: elm,
+    				cb_init: function() {
+    					callback(elm);
+    				},
+    				cb_playlist_click: function(item) {
+    					callback(elm);
+    				}
+    			});
+    		});
+    	}
+    </script>
+	</body>
+</html>
